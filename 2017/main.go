@@ -2,15 +2,12 @@ package main
 
 import "fmt"
 
-func main() {
-	ToLCD(8)
-}
-
 func ToLCDMultiple(number ...int) string {
 	var (
 		result1, result2, result3 string
 		digits                    = map[int][]int{
 			0: {0, 1, 0, 1, 0, 1, 1, 1, 1},
+			1: {0, 0, 0, 0, 0, 1, 0, 0, 1},
 			8: {0, 1, 0, 1, 1, 1, 1, 1, 1},
 		}
 	)
@@ -27,23 +24,6 @@ func ToLCDMultiple(number ...int) string {
 		}
 	}
 	return fmt.Sprintf("%s\n%s\n%s", result1, result2, result3)
-}
-
-func ToLCD(number int) string {
-	var (
-		result string
-		digits = map[int][]int{
-			0: {0, 1, 0, 1, 0, 1, 1, 1, 1},
-			8: {0, 1, 0, 1, 1, 1, 1, 1, 1},
-		}
-	)
-	for pos, onoff := range digits[number] {
-		if pos != 0 && pos%3 == 0 {
-			result += "\n"
-		}
-		result += Draw(pos, onoff)
-	}
-	return result
 }
 
 func Draw(pos int, onoff int) string {
